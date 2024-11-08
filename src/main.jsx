@@ -10,4 +10,4 @@ const App = () => {
   )
 }
 
-render(createElement(App), document.querySelector('#root'))
+render(createElement(App), document.getElementById('root'))
