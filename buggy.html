@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React18 bug with css target</title>
-    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   </head>
   <body>
     <style>
@@ -45,19 +43,20 @@
     </nav>
     <div id="html" class="big">html id target</div>
     <div id="root"></div>
-    <script>
-      function App() {
-        return React.createElement(
-          "div",
-          { id: "react", className: "big" },
-          "react id target"
-        );
+    <script type="module">
+      import { createRoot } from 'react-dom/client'
+      import { createElement } from 'react'
+      const App = () => {
+        return createElement(
+          'div',
+          {
+            id: 'react',
+            className: 'big',
+          },
+          'react id target'
+        )
       }
-
-      const rootElement = document.querySelector("#root");
-      const root = ReactDOM.createRoot(rootElement);
-
-      root.render(React.createElement(App));
+      createRoot(document.getElementById('root')).render(createElement(App))
     </script>
   </body>
 </html>

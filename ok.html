@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React18 bug with css target</title>
-    <script type="module" crossorigin src="/assets/index-B8CnUuTM.js"></script>
   </head>
   <body>
     <style>
@@ -44,5 +43,20 @@
     </nav>
     <div id="html" class="big">html id target</div>
     <div id="root"></div>
+    <script type="module">
+      import { createElement } from 'react'
+      import { render } from 'react-dom'
+      const App = () => {
+        return createElement(
+          'div',
+          {
+            id: 'react',
+            className: 'big',
+          },
+          'react id target'
+        )
+      }
+      render(createElement(App), document.getElementById('root'))
+    </script>
   </body>
 </html>

@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React18 bug with css target</title>
-    <script type="module" crossorigin src="/assets/index-18wdQbB1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   </head>
   <body>
     <style>
       a {
         display: block;
       }
-      :target {
+      :target,
+      [data-is-target='true'] {
         background-color: green;
       }
 
@@ -44,5 +46,31 @@
     </nav>
     <div id="html" class="big">html id target</div>
     <div id="root"></div>
+    <script>
+      function App() {
+        const [isTarget, setIsTarget] = React.useState(false)
+
+        React.useEffect(() => {
+          const checkIfTarget = () => {
+            const hash = window.location.hash.slice(1)
+            setIsTarget(hash === 'react')
+          }
+
+          checkIfTarget()
+          window.addEventListener('hashchange', checkIfTarget)
+          return () => window.removeEventListener('hashchange', checkIfTarget)
+        }, [])
+
+        return React.createElement(
+          'div',
+          { id: 'react', className: 'big', 'data-is-target': isTarget },
+          'react id target'
+        )
+      }
+
+      ReactDOM.createRoot(document.querySelector('#root')).render(
+        React.createElement(App)
+      )
+    </script>
   </body>
 </html>
