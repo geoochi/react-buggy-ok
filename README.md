@@ -1,6 +1,7 @@
-``` sh
+# how to run
+
+```sh
 pnpm install
-pnpm dev
 pnpm build
-pnpm preview
+python -m http.server -b 127.0.0.1 -d .
 ```

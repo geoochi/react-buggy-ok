@@ -1,0 +1,1 @@
+import{r as o,a}from"./index-BTNF3ZkR.js";var e={},r;function c(){if(r)return e;r=1;var t=o();return e.createRoot=t.createRoot,e.hydrateRoot=t.hydrateRoot,e}var n=c();const i=()=>a.createElement("div",{id:"react",className:"big"},"react id target");n.createRoot(document.getElementById("root")).render(a.createElement(i));
