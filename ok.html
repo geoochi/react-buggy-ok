@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React18 bug with css target</title>
+  </head>
+  <body>
+    <style>
+      a {
+        display: block;
+      }
+      :target {
+        background-color: green;
+      }
+
+      .big {
+        font-size: 2rem;
+      }
+    </style>
+    <h1>Current Page: React without createRoot</h1>
+    <p>CSS target should works after refresh page.</p>
+    <p>This page is really simple. Feel free to view the page source code.</p>
+
+    <a href="./buggy.html">Go to Buggy page</a>
+
+    <p>
+      This page is show show the createRoot function from React@18 break the css
+      target.
+    </p>
+    <p>
+      The element selected by the URL hash in this webpage will have a green
+      background color.
+    </p>
+    <p>
+      Please click on the link below to activate ID target and refresh the page
+      to observe the results.
+    </p>
+    <nav>
+      <a href="#html" class="big">go to html id target</a>
+      <a href="#react" class="big">go to react id target</a>
+    </nav>
+    <div id="html" class="big">html id target</div>
+    <div id="root"></div>
+    <script type="module" src="./src/ok.jsx"></script>
+  </body>
+</html>
